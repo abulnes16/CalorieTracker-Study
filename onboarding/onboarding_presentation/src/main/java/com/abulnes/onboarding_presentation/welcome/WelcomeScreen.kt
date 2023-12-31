@@ -21,7 +21,7 @@ import com.abulnes.core_ui.LocalSpacing
 import com.abulnes.onboarding_presentation.components.ActionButton
 
 @Composable
-fun WelcomeScreen(onNavigate: (UiEvent.Navigate)-> Unit ,modifier: Modifier = Modifier) {
+fun WelcomeScreen(onNext: ()-> Unit ,modifier: Modifier = Modifier) {
     val spacing = LocalSpacing.current
     Column(
         modifier = modifier.fillMaxSize().padding(spacing.spaceMedium),
@@ -36,7 +36,7 @@ fun WelcomeScreen(onNavigate: (UiEvent.Navigate)-> Unit ,modifier: Modifier = Mo
         Spacer(modifier = Modifier.height(spacing.spaceMedium))
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = { onNavigate(UiEvent.Navigate(Route.GENDER)) },
+            onClick = { onNext() },
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

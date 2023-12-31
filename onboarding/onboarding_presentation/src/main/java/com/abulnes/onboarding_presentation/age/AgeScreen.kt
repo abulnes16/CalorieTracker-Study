@@ -33,7 +33,7 @@ import com.abulnes.onboarding_presentation.components.UnitTextField
 @Composable
 fun AgeScreen(
     scaffoldState: ScaffoldState,
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNext: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AgeViewModel = hiltViewModel(),
 ) {
@@ -42,7 +42,7 @@ fun AgeScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNext()
                 is UiEvent.ShowSnackBar -> {
                     scaffoldState.snackbarHostState.showSnackbar(
                         message = event.message.asString(

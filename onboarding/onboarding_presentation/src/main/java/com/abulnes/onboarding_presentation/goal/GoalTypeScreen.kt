@@ -28,7 +28,7 @@ import com.abulnes.onboarding_presentation.components.SelectableButton
 
 @Composable
 fun GoalTypeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNext: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: GoalViewModel = hiltViewModel(),
 ) {
@@ -36,7 +36,7 @@ fun GoalTypeScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNext()
                 else -> Unit
             }
         }

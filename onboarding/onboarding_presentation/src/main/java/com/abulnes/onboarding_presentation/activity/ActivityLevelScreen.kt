@@ -29,7 +29,7 @@ import com.abulnes.onboarding_presentation.components.SelectableButton
 
 @Composable
 fun ActivityLevelScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit,
+    onNext: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ActivityViewModel = hiltViewModel(),
 ) {
@@ -37,7 +37,7 @@ fun ActivityLevelScreen(
     LaunchedEffect(key1 = true) {
         viewModel.uiEvent.collect { event ->
             when (event) {
-                is UiEvent.Navigate -> onNavigate(event)
+                is UiEvent.Success -> onNext()
                 else -> Unit
             }
         }
@@ -95,7 +95,7 @@ fun ActivityLevelScreen(
         }
         ActionButton(
             text = stringResource(id = R.string.next),
-            onClick = viewModel::onNextClick,
+            onClick = { onNext() },
             modifier = Modifier.align(
                 Alignment.BottomEnd
             )
